@@ -371,7 +371,7 @@ $( document ).ready(function() {
         
         var isColliding = false;
         for (var i=0; i<elements.length; i++) {
-            if(elements[i].x < 300 ) {
+            if((elements[i].x > 100) && (elements[i].x < 300)) {
                 if(hitTestRectangle(player, elements[i])) {
                     isColliding = true;
                     player.vy = 0;
@@ -516,5 +516,17 @@ $( document ).ready(function() {
         return result;
     }
     
+    var observedElement = document.body;
+    var mc = new Hammer(observedElement);
+    mc.on("tap", function(ev) {
+        if(is_grounded) {
+            player.vy = -20;
+            player.y -= 20; 
+            is_grounded = false;
+            TweenMax.to(player, 0.4, {
+                rotation:"+="+(360 * Math.PI / 180)
+            });   
+        }
+    });
 });
 
