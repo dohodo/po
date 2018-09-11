@@ -371,7 +371,7 @@ $( document ).ready(function() {
         
         var isColliding = false;
         for (var i=0; i<elements.length; i++) {
-            if(elements[i].x < 300 ) {
+            if((elements[i].x > 100) && (elements[i].x < 300)) {
                 if(hitTestRectangle(player, elements[i])) {
                     isColliding = true;
                     player.vy = 0;
